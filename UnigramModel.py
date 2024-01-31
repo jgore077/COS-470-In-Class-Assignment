@@ -1,5 +1,7 @@
 import os
 import nltk
+import math
+
 from nltk.tokenize import word_tokenize
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -52,6 +54,12 @@ def freq_to_prob(dic_term_frequency):
 def calculate_probability(dic_term_prob, input_text):
     prob = 0.0
 
+    input_tokens = [word.lower() for word in word_tokenize(input_text) if not word.lower() in stop_words and len(word)>1]
+
+    for t in input_tokens:
+        if t in dic_term_prob:
+            prob += math.log(dic_term_prob[t])
+    
     return prob
 
 
@@ -60,6 +68,9 @@ def main():
     print(worddict)
     probdict=freq_to_prob(worddict)
     print(probdict)
+
+    print(calculate_probability(probdict, "I am very bad bad, sad man."))
+
     return
 
 main()

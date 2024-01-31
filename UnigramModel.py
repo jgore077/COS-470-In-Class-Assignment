@@ -63,28 +63,26 @@ def calculate_probability(dic_term_prob, input_text):
     return prob
 
 def main():
-    input_text = "I am a very bad, bad sad man. My wife left me and I drink beer."
+    input_text = """You used to call me on my cell phone
+Late night when you need my love
+Call me on my cell phone"""
 
     genres = ["Blues", "Country", "Metal", "Pop", "Rap", "Rock"]
     genreprobdict = []
+
+    probs = {}
 
     for genre in genres:
         worddict=read_files_in_directory(genre)
         probdict=freq_to_prob(worddict)
         genreprobdict.append(probdict)
 
-
-    smallestindex = 0
-    smallestprob = -100000
-
     for i, v in enumerate(genreprobdict):
-        t = calculate_probability(v, input_text)
-        if t > smallestprob:
-            smallestindex = i
-            smallestprob = t
-
-    print(genres[smallestindex], smallestprob)
-    
+        probs[genres[i]] = calculate_probability(v, input_text)
+        
+    probs = dict(sorted(probs.items(), key=lambda x: x[1]))
+        
+    print(probs)
     return
 
 main()

@@ -37,8 +37,14 @@ def read_files_in_directory(directory_path):
 
 def freq_to_prob(dic_term_frequency):
     dic_term_prob = {}
-    # YOUR CODE
-    # Convert the frequencies to probabilities
+    total = 0
+    
+    for t in dic_term_frequency.values():
+        total += t
+    
+    for t in dic_term_frequency:
+        dic_term_prob[t] = dic_term_frequency[t] / total
+        
 
     return dic_term_prob
 
@@ -52,6 +58,8 @@ def calculate_probability(dic_term_prob, input_text):
 def main():
     worddict=read_files_in_directory('Blues')
     print(worddict)
+    probdict=freq_to_prob(worddict)
+    print(probdict)
     return
 
 main()

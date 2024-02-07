@@ -169,7 +169,7 @@ def get_color(genre):
 
 def main():
     # Path to the root Lyrics files
-    path_to_root_dir = r"/Lyrics"
+    path_to_root_dir = r"./Lyrics"
     dic_song_dic_term_count, dic_song_genre = read_files_to_dictionaries(path_to_root_dir + "/")
     # dic_song_dic_term_frequency = get_TF_values(dic_song_dic_term_count)
     # dic_term_idfs = get_IDF_values(dic_song_dic_term_count)

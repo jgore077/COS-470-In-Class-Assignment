@@ -70,8 +70,10 @@ def get_IDF_values(dic_song_term_frequency):
     """
     dic_idf_values = {}
     num_songs = len(dic_song_term_frequency.keys())
-
+   
     for song in dic_song_term_frequency:
+        # Sorting terms
+        # dic_song_term_frequency[song] ={key: value for key, value in sorted(dic_song_term_frequency[song].items())}
         for term in dic_song_term_frequency[song].keys():
             if dic_idf_values.get(term)==None:
                 dic_idf_values[term]=1

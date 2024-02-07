@@ -93,7 +93,7 @@ def song_to_vector(dic_tf_per_song, dic_idf):
     """
     song_to_vec = {}
     for song, tf_dict in dic_tf_per_song.items():
-        song_vector = np.zeros(len(dic_idf))
+        song_vector = numpy.zeros(len(dic_idf))
 
         for token, tf in tf_dict.items():
             if token in dic_idf: 

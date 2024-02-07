@@ -4,6 +4,7 @@ import nltk
 import numpy
 import matplotlib.pyplot as plt
 from nltk.tokenize import word_tokenize
+from regex import W
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.manifold import TSNE
 
@@ -53,6 +54,9 @@ def get_TF_values(dic_song_term_frequency):
     """
     dic_tf_per_song = {}
     for song in dic_song_term_frequency:
+        dic_tf_per_song[song]={}
+        for word in dic_song_term_frequency[song].keys():
+            dic_tf_per_song[song][word]= math.log(dic_song_term_frequency[song][word]+1)
         ############################
         # Put your code here and then remove 'pass'
         # YOUR CODE
@@ -171,7 +175,8 @@ def main():
     # Path to the root Lyrics files
     path_to_root_dir = r"./Lyrics"
     dic_song_dic_term_count, dic_song_genre = read_files_to_dictionaries(path_to_root_dir + "/")
-    # dic_song_dic_term_frequency = get_TF_values(dic_song_dic_term_count)
+    dic_song_dic_term_frequency = get_TF_values(dic_song_dic_term_count)
+    print(dic_song_dic_term_frequency)
     # dic_term_idfs = get_IDF_values(dic_song_dic_term_count)
     # dic_song_vectors = song_to_vector(dic_song_dic_term_frequency, dic_term_idfs)
     # test_cosine(dic_song_vectors)

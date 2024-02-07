@@ -56,12 +56,7 @@ def get_TF_values(dic_song_term_frequency):
     for song in dic_song_term_frequency:
         dic_tf_per_song[song]={}
         for word in dic_song_term_frequency[song].keys():
-            dic_tf_per_song[song][word]= math.log(dic_song_term_frequency[song][word]+1)
-        ############################
-        # Put your code here and then remove 'pass'
-        # YOUR CODE
-        ############################
-        pass
+            dic_tf_per_song[song][word]= math.log10(dic_song_term_frequency[song][word]+1)
 
     return dic_tf_per_song
 
@@ -77,18 +72,15 @@ def get_IDF_values(dic_song_term_frequency):
     num_songs = len(dic_song_term_frequency.keys())
 
     for song in dic_song_term_frequency:
-        ############################
-        # Put your code here and then remove 'pass'
-        # YOUR CODE
-        ############################
-        pass
+        for term in dic_song_term_frequency[song].keys():
+            if dic_idf_values.get(term)==None:
+                dic_idf_values[term]=1
+                continue
+            dic_idf_values[term]+=1
+        
 
     for term in dic_idf_values:
-        ############################
-        # Put your code here and then remove 'pass'
-        # YOUR CODE
-        ############################
-        pass
+        dic_idf_values[term]= math.log10(num_songs/dic_idf_values[term])
     return dic_idf_values
 
 
@@ -175,9 +167,9 @@ def main():
     # Path to the root Lyrics files
     path_to_root_dir = r"./Lyrics"
     dic_song_dic_term_count, dic_song_genre = read_files_to_dictionaries(path_to_root_dir + "/")
-    dic_song_dic_term_frequency = get_TF_values(dic_song_dic_term_count)
-    print(dic_song_dic_term_frequency)
-    # dic_term_idfs = get_IDF_values(dic_song_dic_term_count)
+    # dic_song_dic_term_frequency = get_TF_values(dic_song_dic_term_count)
+    # print(dic_song_dic_term_frequency)
+    dic_term_idfs = get_IDF_values(dic_song_dic_term_count)
     # dic_song_vectors = song_to_vector(dic_song_dic_term_frequency, dic_term_idfs)
     # test_cosine(dic_song_vectors)
     # test_tsne_plot(dic_song_vectors, dic_song_genre)

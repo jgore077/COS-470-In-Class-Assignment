@@ -110,9 +110,9 @@ def cosine_sim(numpy_vec1, numpy_vec2):
     @param numpy_vec2: vector 2
     @return: cosine similarity
     """
-    dot_product= np.dot(numpy_vec1, numpy_vec2)
-    magnitudeA = np.sqrt(np.sum(np.square(numpy_vec1)))
-    magnitudeB = np.sqrt(np.sum(np.square(numpy_vec2)))
+    dot_product= numpy.dot(numpy_vec1, numpy_vec2)
+    magnitudeA = numpy.sqrt(numpy.sum(numpy.square(numpy_vec1)))
+    magnitudeB = numpy.sqrt(numpy.sum(numpy.square(numpy_vec2)))
 
     cosine_similarity = dot_product / (magnitudeA * magnitudeB)
 

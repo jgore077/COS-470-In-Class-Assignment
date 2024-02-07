@@ -118,9 +118,9 @@ def cosine_sim(numpy_vec1, numpy_vec2):
 
 
 def test_cosine(dic_song_vectors):
-    print(cosine_sim(dic_song_vectors["Till I Collapse"].reshape(-1, 1), dic_song_vectors["Rap God"].reshape(-1, 1)))
+    print(cosine_sim(dic_song_vectors["Till I Collapse"].reshape(1, -1), dic_song_vectors["Rap God"].reshape(1, -1)))
     print(
-        cosine_sim(dic_song_vectors["Till I Collapse"].reshape(-1, 1), dic_song_vectors["Billie Jean"].reshape(-1, 1)))
+        cosine_sim(dic_song_vectors["Till I Collapse"].reshape(1, -1), dic_song_vectors["Billie Jean"].reshape(1, -1)))
 
 
 def test_tsne_plot(dic_song_vectors, dic_song_genre):
@@ -179,7 +179,7 @@ def main():
 
 
     test_cosine(dic_song_vectors)
-    test_tsne_plot(dic_song_vectors, dic_song_genre)
+    # test_tsne_plot(dic_song_vectors, dic_song_genre)
 
 
 if __name__ == '__main__':

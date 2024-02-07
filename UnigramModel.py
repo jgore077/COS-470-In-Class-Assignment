@@ -59,13 +59,13 @@ def calculate_probability(dic_term_prob, input_text):
     for t in input_tokens:
         if t in dic_term_prob:
             prob += math.log(dic_term_prob[t])
-    
+        
     return prob
 
 def main():
-    input_text = """You used to call me on my cell phone
-Late night when you need my love
-Call me on my cell phone"""
+    input_text = """If you want my future, forget my past
+If you wanna get with me, better make it fast
+Now don't go wasting my precious time"""
 
     genres = ["Blues", "Country", "Metal", "Pop", "Rap", "Rock"]
     genreprobdict = []
@@ -81,7 +81,7 @@ Call me on my cell phone"""
         probs[genres[i]] = calculate_probability(v, input_text)
         
     probs = dict(sorted(probs.items(), key=lambda x: x[1]))
-        
+
     print(probs)
     return
 

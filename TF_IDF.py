@@ -99,10 +99,10 @@ def song_to_vector(dic_tf_per_song, dic_idf):
             if token in dic_idf: 
                 tf_idf = tf * dic_idf[token]
         
-        index = list(dic_idf.keys()).index(token)
-        song_vector=[index] = tf_idf
-    
-    song_to_vec[song]= song_vector
+                index = list(dic_idf.keys()).index(token)
+                song_vector[index] = tf_idf
+        
+        song_to_vec[song] = song_vector
     return song_to_vec
 
 
@@ -113,14 +113,8 @@ def cosine_sim(numpy_vec1, numpy_vec2):
     @param numpy_vec2: vector 2
     @return: cosine similarity
     """
-    dot_product= numpy.dot(numpy_vec1, numpy_vec2)
-    magnitudeA = numpy.sqrt(numpy.sum(numpy.square(numpy_vec1)))
-    magnitudeB = numpy.sqrt(numpy.sum(numpy.square(numpy_vec2)))
 
-    cosine_similarity = dot_product / (magnitudeA * magnitudeB)
-
-    
-    return cosine_similarity
+    return cosine_similarity(numpy_vec1, numpy_vec2)
 
 
 def test_cosine(dic_song_vectors):
@@ -177,12 +171,15 @@ def main():
     # Path to the root Lyrics files
     path_to_root_dir = r"./Lyrics"
     dic_song_dic_term_count, dic_song_genre = read_files_to_dictionaries(path_to_root_dir + "/")
-    # dic_song_dic_term_frequency = get_TF_values(dic_song_dic_term_count)
-    # print(dic_song_dic_term_frequency)
+    dic_song_dic_term_frequency = get_TF_values(dic_song_dic_term_count)
+    print(dic_song_dic_term_frequency)
     dic_term_idfs = get_IDF_values(dic_song_dic_term_count)
-    # dic_song_vectors = song_to_vector(dic_song_dic_term_frequency, dic_term_idfs)
-    # test_cosine(dic_song_vectors)
-    # test_tsne_plot(dic_song_vectors, dic_song_genre)
+    dic_song_vectors = song_to_vector(dic_song_dic_term_frequency, dic_term_idfs)
+
+
+
+    test_cosine(dic_song_vectors)
+    test_tsne_plot(dic_song_vectors, dic_song_genre)
 
 
 if __name__ == '__main__':

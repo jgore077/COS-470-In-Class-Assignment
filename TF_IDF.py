@@ -92,14 +92,17 @@ def song_to_vector(dic_tf_per_song, dic_idf):
     @return: dictionary of (song name, vector)
     """
     song_to_vec = {}
-    for song in dic_tf_per_song:
-        ############################
-        # Put your code here and then remove 'pass'
-        # Sample code to get numpy array from a python list: numpy.array(lst)
-        # Sample code to sort python dictionary based on keys dict(sorted(my_dic.items()))
-        # YOUR CODE
-        ############################
-        pass
+    for song, tf_dict in dic_tf_per_song.items():
+        song_vector = np.zeros(len(dic_idf))
+
+        for token, tf in tf_dict.items():
+            if token in dic_idf: 
+                tf_idf = tf * dic_idf[token]
+        
+        index = list(dic_idf.keys()).index(token)
+        song_vector=[index] = tf_idf
+    
+    song_to_vec[song]= song_vector
     return song_to_vec
 
 
